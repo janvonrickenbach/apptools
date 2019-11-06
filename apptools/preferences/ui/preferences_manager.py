@@ -250,7 +250,15 @@ class PreferencesManager(HasTraits):
         #
         # fixme: Currently we have to create a dummy page for the root node
         # event though the root does not get shown in the tree!
-        root_page = PreferencesPage(name='Root', preferences_path='root')
+
+        # Deriving a RootPreferencesPage is a workaround to make sure that preferences_path is always defined for
+        # root_page.
+        # Otherwise deepcopy of the root_page can lead to problems because the _preferences_changed handler
+        # depends on preference_path which can be undefined if "preferences" get copied before "preference_path"
+        class RootPreferencesPage(PreferencesPage):
+            name = "Root"
+            preferences_path = "root"
+        root_page = RootPreferencesPage()
         root      = PreferencesNode(page=root_page)
 
         for page in self.pages:
