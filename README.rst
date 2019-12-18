@@ -14,6 +14,7 @@ Documentation: http://docs.enthought.com/apptools
 
 Source Code: http://www.github.com/enthought/apptools
 
+This is a fork of the apptools Package that adds support wxPythonPhoenix and Python3   
 
 The apptools project includes a set of packages that Enthought has found
 useful in creating a number of applications.  They implement functionality
